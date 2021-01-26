@@ -32,6 +32,7 @@
 		2795274AFAF44F1DA61E66BD /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 684161DDE90B4F20B72BEAB3 /* Octicons.ttf */; };
 		B9A509AB6BE74C36AFEB2B7A /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C567E9EB7F754032A9F803BC /* SimpleLineIcons.ttf */; };
 		7490180349154779AEAE3CA3 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 43804DA6B6A54C4FB14ED28B /* Zocial.ttf */; };
+		FF439774A0DA40498EE94C98 /* GrandHotel-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2F16D056A8294424AFC9D779 /* GrandHotel-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +84,7 @@
 		684161DDE90B4F20B72BEAB3 /* Octicons.ttf */ = {isa = PBXFileReference; name = "Octicons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		C567E9EB7F754032A9F803BC /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; name = "SimpleLineIcons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		43804DA6B6A54C4FB14ED28B /* Zocial.ttf */ = {isa = PBXFileReference; name = "Zocial.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		2F16D056A8294424AFC9D779 /* GrandHotel-Regular.ttf */ = {isa = PBXFileReference; name = "GrandHotel-Regular.ttf"; path = "../assets/fonts/GrandHotel-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,6 +211,7 @@
 				684161DDE90B4F20B72BEAB3 /* Octicons.ttf */,
 				C567E9EB7F754032A9F803BC /* SimpleLineIcons.ttf */,
 				43804DA6B6A54C4FB14ED28B /* Zocial.ttf */,
+				2F16D056A8294424AFC9D779 /* GrandHotel-Regular.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -368,6 +371,7 @@
 				2795274AFAF44F1DA61E66BD /* Octicons.ttf in Resources */,
 				B9A509AB6BE74C36AFEB2B7A /* SimpleLineIcons.ttf in Resources */,
 				7490180349154779AEAE3CA3 /* Zocial.ttf in Resources */,
+				FF439774A0DA40498EE94C98 /* GrandHotel-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

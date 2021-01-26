@@ -131,4 +131,12 @@ npm run android
 
 fontFamily:'GrandHotel-Regular'
 
+> 0.60
+
+react-native.config.js
+
+module.exports = {
+    assets: ['./assets/fonts']
+};
+
 ```
