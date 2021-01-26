@@ -105,3 +105,9 @@ AndroidManifest.xml
 
 ```
 
+## Vector Icons
+
+```
+npm i react-native-vector-icons
+react-native link
+```
