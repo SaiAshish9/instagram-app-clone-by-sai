@@ -111,3 +111,24 @@ AndroidManifest.xml
 npm i react-native-vector-icons
 react-native link
 ```
+
+## Custom Fonts
+
+```
+Grand-Hotel
+
+package.json
+
+"rnpm": {
+    "assets": [
+      "./assets/fonts"
+    ]
+  },
+
+react-native link
+
+npm run android
+
+fontFamily:'GrandHotel-Regular'
+
+```
