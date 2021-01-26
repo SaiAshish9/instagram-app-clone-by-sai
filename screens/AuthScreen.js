@@ -13,59 +13,20 @@ import Btn from '../components/button';
 import {createStackNavigator, TransitionPresets} from '@react-navigation/stack';
 import Switch from './Switch';
 import SignUp from './Signup';
+import SignIn from './Signin';
+import Title from '../components/title';
+import {Link, Link1} from '../styles/auth';
+
 
 const {height, width} = Dimensions.get('window');
 
-const Text1 = styled.Text`
-  font-size: ${height * 0.063}px;
-  font-family: 'GrandHotel-Regular';
-`;
-
-const Link1 = styled.Text`
-  color: #0295f7;
-  font-weight: bold;
-`;
-
-const Link = ({text, style, btn, ...props}) => {
-  return btn ? (
-    <TouchableOpacity
-      {...props}
-      style={[
-        {
-          height: height * 0.08,
-          alignItems: 'center',
-          justifyContent: 'center',
-          width: '100%',
-        },
-        {...style},
-      ]}>
-      <Link1>{text}</Link1>
-    </TouchableOpacity>
-  ) : (
-    <View
-      {...props}
-      style={[
-        {
-          height: height * 0.08,
-          alignItems: 'center',
-          justifyContent: 'center',
-          width: '100%',
-        },
-        {...style},
-      ]}>
-      <TouchableOpacity>
-        <Link1>{text}</Link1>
-      </TouchableOpacity>
-    </View>
-  );
-};
 
 const InitialScreen = ({navigation}) => {
   return (
     <View
       style={{height, width, alignItems: 'center', backgroundColor: '#fff'}}>
       <StatusBar backgroundColor="#fff" barStyle="dark-content" />
-      <Text1 style={{marginTop: height * 0.18}}>Instagram</Text1>
+      <Title style={{marginTop: height * 0.18}} />
       <Image
         style={{
           height: height * 0.16,
@@ -84,7 +45,7 @@ const InitialScreen = ({navigation}) => {
         }}>
         saiashish9
       </Text>
-      <View style={{width: '100%', paddingHorizontal: width * 0.08}}>
+      <View style={{width: '100%', paddingHorizontal: width * 0.06}}>
         <Btn text="Log In" />
         <Link text="Remove" />
       </View>
@@ -155,6 +116,7 @@ const AuthScreen = () => {
       headerMode="none">
       <Stack.Screen name="auth" component={InitialScreen} />
       <Stack.Screen name="signup" component={SignUp} />
+      <Stack.Screen name="signin" component={SignIn} />
       <Stack.Screen name="switch" component={Switch} />
     </Stack.Navigator>
   );
