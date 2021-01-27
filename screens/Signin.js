@@ -54,7 +54,7 @@ const SignIn = ({navigation}) => {
           />
           <Input
             onChangeText={setPass}
-            secureTextEntry
+            secureTextEntry={true}
             placeholder="Password"
             style={{marginBottom: height * 0.02}}
           />
@@ -74,7 +74,7 @@ const SignIn = ({navigation}) => {
             width: '100%',
             marginTop: height * 0.02,
           }}>
-          <Label style={{fontSize: 12}}>Don't have an account?</Label>
+          <Label style={{fontSize: 12}}>Forgot your login details?</Label>
           <TouchableOpacity
             onPress={() => {
               navigation.push('signup');
@@ -86,7 +86,7 @@ const SignIn = ({navigation}) => {
                 marginLeft: 3,
                 color: '#053461',
               }}>
-              Sign up.
+              Get help logging in.
             </Label>
           </TouchableOpacity>
         </View>
