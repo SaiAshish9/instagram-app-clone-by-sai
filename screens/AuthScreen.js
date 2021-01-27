@@ -16,6 +16,7 @@ import SignUp from './Signup';
 import SignIn from './Signin';
 import Title from '../components/title';
 import {Link, Link1} from '../styles/auth';
+import Register from './Register';
 
 
 const {height, width} = Dimensions.get('window');
@@ -46,7 +47,11 @@ const InitialScreen = ({navigation}) => {
         saiashish9
       </Text>
       <View style={{width: '100%', paddingHorizontal: width * 0.06}}>
-        <Btn text="Log In" />
+        <Btn
+         onPress={() => {
+          navigation.replace('home');
+        }}
+        text="Log In" />
         <Link text="Remove" />
       </View>
       <View
@@ -118,6 +123,7 @@ const AuthScreen = () => {
       <Stack.Screen name="signup" component={SignUp} />
       <Stack.Screen name="signin" component={SignIn} />
       <Stack.Screen name="switch" component={Switch} />
+      <Stack.Screen name="register" component={Register} />
     </Stack.Navigator>
   );
 };

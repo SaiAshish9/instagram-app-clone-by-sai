@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {View, Dimensions} from 'react-native';
+import React, {useState, useRef} from 'react';
+import {View, Dimensions, Text} from 'react-native';
 import styled from 'styled-components';
 import Icon from 'react-native-vector-icons/Ionicons';
 
@@ -15,8 +15,7 @@ const TextInput = styled.TextInput`
   border-width: 1px;
 `;
 
-const Input = ({style, ...props}) => {
-  const [invisible, SetInVisible] = useState(true);
+const Input = ({style,text='',setText,...props}) => {
 
   return (
     <View
@@ -27,25 +26,48 @@ const Input = ({style, ...props}) => {
         width: '100%',
         ...style,
       }}>
-        
+      <View
+        style={{
+          top: '45%',
+          left: '3%',
+          position: 'absolute',
+          zIndex: 2,
+        }}>
+        <Text
+          style={{
+            color: '#999',
+            fontWeight: 'bold',
+            borderRightColor: 'rgba(153,153,153,0.7)',
+            borderRightWidth: 1,
+            paddingRight: 3,
+          }}>
+          IN +91
+        </Text>
+      </View>
       <TextInput
         selectTextOnFocus={false}
         showSoftInputFocus={false}
         autoCompleteType="off"
+        keyboardType="phone-pad"
+        textContentType="telephoneNumber"
         importantForAutoFill="no"
         {...props}
-        secureTextEntry={invisible && props.secureTextEntry}
-        style={{paddingHorizontal: 12, color: '#8f9aa9'}}
+        value={text}
+        onChangeText={(val) => {
+           setText(val);
+        }}
+        style={{paddingHorizontal: 12, paddingLeft: 65, color: '#8f9aa9'}}
       />
-      {props.secureTextEntry && (
+
+      {text.length>0 && (
         <View
           style={{
             top: '2%',
             right: '50%',
           }}>
           <Icon
-            onPress={() => SetInVisible(!invisible)}
-            name={invisible ? 'eye-off-outline' : 'eye-outline'}
+            onPress={() => setText('')}
+            name={'close-outline'}
             color="#8f9aa9"
             size={24}
           />
