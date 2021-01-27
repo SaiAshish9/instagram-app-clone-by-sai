@@ -31,7 +31,7 @@ const Switch = ({navigation}) => (
         width: '100%',
         paddingHorizontal: width * 0.06,
       }}>
-      <Btn text="Continue as Sai Ashish" />
+      <Btn logoFB text="Continue as Sai Ashish" />
       <Label style={{marginTop: 5}}>
         Sarthak, Sakshi, Dhruv, Vaishu and 41 other friends
       </Label>

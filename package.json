@@ -8,7 +8,7 @@
     ]
   },
   "scripts": {
-    "android": "react-native run-android",
+    "android": "react-native run-android && npm run start",
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
