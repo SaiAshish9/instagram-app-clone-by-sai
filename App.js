@@ -3,7 +3,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {Easing} from 'react-native';
 import AuthScreen from './screens/AuthScreen';
 import {createStackNavigator, TransitionPresets} from '@react-navigation/stack';
-import Home from './screens/Home';
+import Index from './screens/Index';
 
 
 const closeConfig = {
@@ -32,7 +32,7 @@ const App = () => {
         initialRouteName="auth"
         headerMode="none">
         <Stack.Screen name="auth" component={AuthScreen} />
-        <Stack.Screen name="home" component={Home} />
+        <Stack.Screen name="home" component={Index} />
       </Stack.Navigator>
     </NavigationContainer>
   );

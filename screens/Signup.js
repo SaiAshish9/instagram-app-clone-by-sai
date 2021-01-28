@@ -16,7 +16,7 @@ import Tel from '../components/tel';
 const {height, width} = Dimensions.get('window');
 
 const Phone = ({navigation}) => {
-  const [usr, setUsr] = useState('');
+  const [usr, setUsr] = useState('892012544');
 
   return (
     <KeyboardAvoidingView>
@@ -83,7 +83,7 @@ const Tabs = ({navigation}) => {
           justifyContent: 'space-between',
           alignItems: 'center',
           flexDirection: 'row',
-          marginTop: height * 0.02,
+          marginTop: height * 0.01,
           marginBottom: -height * 0.01,
         }}>
         <TouchableHighlight
@@ -93,7 +93,7 @@ const Tabs = ({navigation}) => {
             width: '50%',
             alignItems: 'center',
             justifyContent: 'center',
-            paddingBottom: height * 0.02,
+            paddingVertical: height * 0.02,
             borderBottomColor: selected === 0 ? '#000' : 'rbga(0,0,0,0.1)',
             borderBottomWidth: selected === 0 ? 2 : 0.5,
           }}>
@@ -113,7 +113,7 @@ const Tabs = ({navigation}) => {
             width: '50%',
             alignItems: 'center',
             justifyContent: 'center',
-            paddingBottom: height * 0.02,
+            paddingVertical: height * 0.02,
             borderBottomColor: selected === 1 ? '#000' : 'rbga(0,0,0,0.1)',
             borderBottomWidth: selected === 1 ? 2 : 0.5,
           }}>
