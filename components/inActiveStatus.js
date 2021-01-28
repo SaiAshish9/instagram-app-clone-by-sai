@@ -3,7 +3,7 @@ import {View, Image, Text, Dimensions} from 'react-native';
 
 const {height, width} = Dimensions.get('window');
 
-const InActiveStatus = (props) => {
+const InActiveStatus = ({data, ...props}) => {
   return (
     <View
       {...props}
@@ -24,8 +24,7 @@ const InActiveStatus = (props) => {
         }}>
         <Image
           source={{
-            uri:
-              'https://lh3.googleusercontent.com/ogw/ADGmqu_ZhZjZBqfn2KHYnMUj25dseaNryJmLCKwCV6QL=s32-c-mo',
+            uri: data.url,
           }}
           style={{
             height: height * 0.076,
@@ -42,7 +41,7 @@ const InActiveStatus = (props) => {
           color: '#6e6e6e',
           opacity: 0.4,
         }}>
-        Sarthak
+        {data.name}
       </Text>
     </View>
   );
