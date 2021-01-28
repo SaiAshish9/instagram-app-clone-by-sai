@@ -4,7 +4,7 @@ import LinearGradient from 'react-native-linear-gradient';
 
 const {height, width} = Dimensions.get('window');
 
-const ActiveStatus = (props) => (
+const ActiveStatus = ({data, ...props}) => (
   <TouchableOpacity {...props}>
     <View
       style={{
@@ -32,8 +32,7 @@ const ActiveStatus = (props) => (
           }}>
           <Image
             source={{
-              uri:
-                'https://lh3.googleusercontent.com/ogw/ADGmqu_ZhZjZBqfn2KHYnMUj25dseaNryJmLCKwCV6QL=s32-c-mo',
+              uri: data.url,
             }}
             style={{
               height: height * 0.076,
@@ -50,7 +49,7 @@ const ActiveStatus = (props) => (
           fontWeight: 'bold',
           color: '#6e6e6e',
         }}>
-        Sarthak
+        {data.name}
       </Text>
     </View>
   </TouchableOpacity>

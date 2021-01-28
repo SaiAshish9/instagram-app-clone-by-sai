@@ -1,12 +1,21 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {View, Text, Dimensions, Image, ScrollView} from 'react-native';
 import ActiveStatus from './activeStatus';
 import InActiveStatus from './inActiveStatus';
+import {Context} from '../api/contexts';
 
 const {height, width} = Dimensions.get('window');
 
 const Scroll = () => {
   const [count, setCount] = useState(0);
+  const {
+    state: {statusList},
+    fetchStatusList
+  } = useContext(Context);
+
+  useEffect(() => {
+    fetchStatusList();
+  }, []);
 
   return (
     <View
@@ -35,19 +44,19 @@ const Scroll = () => {
           </Text>
         </View>
 
-        {[...Array(18 - count).keys()].map((i, k) => (
-          <ActiveStatus
-            key={k}
-            onPress={() => {
-              setCount(count + 1);
-            }}
-            key={k}
-          />
-        ))}
+        {statusList &&
+          statusList.map((i, k) => (
+            <ActiveStatus
+              key={k}
+              data={i}
+              onPress={() => {
+                setCount(count + 1);
+              }}
+            />
+          ))}
 
-        {[...Array(count).keys()].map((i, k) => (
-          <InActiveStatus key={k} />
-        ))}
+        {statusList &&
+          [...Array(count).keys()].map((i, k) => <InActiveStatus key={k} />)}
       </ScrollView>
     </View>
   );

@@ -4,7 +4,7 @@ import {Easing} from 'react-native';
 import AuthScreen from './screens/AuthScreen';
 import {createStackNavigator, TransitionPresets} from '@react-navigation/stack';
 import Index from './screens/Index';
-
+import {Provider} from './api/contexts';
 
 const closeConfig = {
   animation: 'timing',
@@ -38,4 +38,10 @@ const App = () => {
   );
 };
 
-export default App;
+export default () => {
+  return (
+    <Provider>
+      <App />
+    </Provider>
+  );
+};
