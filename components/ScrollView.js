@@ -30,7 +30,10 @@ const Scroll = () => {
       style={{
         marginVertical: height * 0.01,
       }}>
-      <ScrollView showsHorizontalScrollIndicator={false} horizontal>
+      <ScrollView
+        showsHorizontalScrollIndicator={false}
+        horizontal
+       >
         <TouchableOpacity>
           <View style={{justifyContent: 'center', marginLeft: width * 0.04}}>
             <Image

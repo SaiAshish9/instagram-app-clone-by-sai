@@ -12,7 +12,7 @@ const Text = styled.Text`
   text-align: center;
 `;
 
-const Header = () => {
+const Header = ({show}) => {
   return (
     <View
       style={{
@@ -21,6 +21,8 @@ const Header = () => {
         justifyContent: 'space-between',
         paddingHorizontal: width * 0.04,
         paddingVertical: height * 0.01,
+        borderBottomColor:show?'#dbdbdb':'#fff',
+        borderBottomWidth:0.7
       }}>
       <StatusBar backgroundColor="#fff" barStyle="dark-content" />
       <TouchableOpacity>

@@ -1,9 +1,11 @@
 import React from 'react';
-import {View, Image, TouchableOpacity, Dimensions} from 'react-native';
+import {View, Image, TouchableOpacity, Dimensions, Easing} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {createDrawerNavigator} from '@react-navigation/drawer';
 import Home from './Home';
 import Icon from 'react-native-vector-icons/Ionicons';
 import styled from 'styled-components';
+import Direct from './Direct';
 
 const {height, width} = Dimensions.get('window');
 
@@ -24,7 +26,7 @@ function MyTabBar({state, descriptors, navigation}) {
       style={{
         flexDirection: 'row',
         backgroundColor: '#fff',
-        height: height * 0.09,
+        height: height * 0.07,
         alignItems: 'center',
       }}>
       {state.routes.map((route, index) => {
@@ -80,20 +82,24 @@ function MyTabBar({state, descriptors, navigation}) {
             accessibilityState={isFocused ? {selected: true} : {}}
             accessibilityLabel={options.tabBarAccessibilityLabel}
             testID={options.tabBarTestID}
-            onPress={onPress}
+            onPressIn={onPress}
+            activeOpacity={1}
             key={index}
             onLongPress={onLongPress}
             style={{flex: 1, alignItems: 'center'}}>
             {index < 4 ? (
-              <Icon name={icon} size={23} color={isFocused ? '#000' : '#000'} />
+              <Icon name={icon} size={24} color={isFocused ? '#000' : '#000'} />
             ) : (
-              <Image 
-              style={{
-                  height:24,
-                  width:24,
-                  borderRadius:12
-              }}
-              source={require('../assets/images/profile.png')} />
+              <Image
+                style={{
+                  height: 24,
+                  width: 24,
+                  borderRadius: 12,
+                  borderColor: isFocused ? '#000' : '#fff',
+                  borderWidth: isFocused ? 2 : 0,
+                }}
+                source={require('../assets/images/profile.png')}
+              />
             )}
           </TouchableOpacity>
         );
@@ -102,7 +108,7 @@ function MyTabBar({state, descriptors, navigation}) {
   );
 }
 
-const Index = () => {
+const Tabs = () => {
   const Tab = createBottomTabNavigator();
 
   return (
@@ -115,6 +121,31 @@ const Index = () => {
       <Tab.Screen name="Fav" component={Home} />
       <Tab.Screen name="Profile" component={Home} />
     </Tab.Navigator>
+  );
+};
+
+const closeConfig = {
+  animation: 'timing',
+  config: {
+    duration: 500,
+    easing: Easing.linear,
+  },
+};
+
+const Index = () => {
+  const Drawer = createDrawerNavigator();
+
+  return (
+    <Drawer.Navigator
+      drawerPosition='right'
+      drawerStyle={{width}}
+      drawerType='slide'
+      overlayColor='transparent'
+      drawerContent={(props)=><Direct {...props} />}
+      headerMode="none">
+      <Drawer.Screen name="Home" component={Tabs} />
+      <Drawer.Screen name="Direct" component={Direct} />
+    </Drawer.Navigator>
   );
 };
 

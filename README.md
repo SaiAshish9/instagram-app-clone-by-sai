@@ -140,3 +140,10 @@ module.exports = {
 };
 
 ```
+
+## Emoji Picker
+
+```
+ubuntu software -> emoji picker
+ibus emoji
+```
