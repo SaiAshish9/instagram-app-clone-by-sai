@@ -8,6 +8,8 @@ const reducer = (state, action) => {
       return {...state, statusList: action.payload};
     case 'set-posts':
       return {...state, posts: action.payload};
+    case 'set-categories':
+      return {...state, categories: action.payload};
     default:
       return state;
   }
@@ -37,14 +39,26 @@ const fetchPosts = (dispatch) => async () => {
   }
 };
 
+const fetchCategories = (dispatch) => async () => {
+  try {
+    const {data} = await Api('categories');
+    dispatch({
+      type: 'set-categories',
+      payload: data,
+    });
+  } catch (e) {}
+};
+
 export const {Context, Provider} = createDataContext(
   reducer,
   {
     fetchStatusList,
+    fetchCategories,
     fetchPosts,
   },
   {
     statusList: null,
     posts: null,
+    categories: null,
   },
 );

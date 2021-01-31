@@ -121,52 +121,52 @@ const Direct = ({navigation}) => {
             <View>
               {statusList &&
                 statusList.map((i, k) => (
-                  <View
-                    key={k}
-                    style={{
-                      marginBottom: height * 0.027,
-                      flexDirection: 'row',
-                      alignItems: 'center',
-                      justifyContent: 'space-between',
-                    }}>
+                  <TouchableOpacity key={k}>
                     <View
                       style={{
+                        marginBottom: height * 0.027,
                         flexDirection: 'row',
                         alignItems: 'center',
                         justifyContent: 'space-between',
                       }}>
-                      <Image
+                      <View
                         style={{
-                          height: height * 0.08,
-                          width: height * 0.08,
-                          borderRadius: height * 0.04,
-                          marginRight: 18,
-                        }}
-                        source={{uri: i.url}}
-                      />
-                      <View>
-                        <Text
+                          flexDirection: 'row',
+                          alignItems: 'center',
+                          justifyContent: 'space-between',
+                        }}>
+                        <Image
                           style={{
-                            fontSize: 13,
-                            marginTop: 5,
-                            fontWeight: 'bold',
-                            color: '#6e6e6e',
-                          }}>
-                          {i.name}
-                        </Text>
-                        <Text
-                          style={{
-                            fontSize: 13,
-                            marginTop: 5,
-                            color: '#999',
-                          }}>
-                          {i.msg}
-                        </Text>
+                            height: height * 0.08,
+                            width: height * 0.08,
+                            borderRadius: height * 0.04,
+                            marginRight: 18,
+                          }}
+                          source={{uri: i.url}}
+                        />
+                        <View>
+                          <Text
+                            style={{
+                              fontSize: 13,
+                              marginTop: 5,
+                              fontWeight: 'bold',
+                              color: '#6e6e6e',
+                            }}>
+                            {i.name}
+                          </Text>
+                          <Text
+                            style={{
+                              fontSize: 13,
+                              marginTop: 5,
+                              color: '#999',
+                            }}>
+                            {i.msg}
+                          </Text>
+                        </View>
                       </View>
+                      <FIcon name="camera" size={24} color="#999" />
                     </View>
-
-                    <FIcon name="camera" size={24} color="#999" />
-                  </View>
+                  </TouchableOpacity>
                 ))}
             </View>
           </View>

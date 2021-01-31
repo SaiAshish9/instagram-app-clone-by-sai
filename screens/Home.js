@@ -4,6 +4,8 @@ import Header from '../components/header';
 import Scroll from '../components/ScrollView';
 import PostCard from '../components/postCard';
 import {Context} from '../api/contexts';
+import {createDrawerNavigator} from '@react-navigation/drawer';
+import Direct from './Direct';
 
 const {height, width} = Dimensions.get('window');
 
@@ -47,4 +49,20 @@ const Home = () => {
   );
 };
 
-export default Home;
+const Main = () => {
+  const Drawer = createDrawerNavigator();
+
+  return (
+    <Drawer.Navigator
+      drawerPosition="right"
+      drawerStyle={{width}}
+      drawerType="slide"
+      overlayColor="transparent"
+      drawerContent={(props) => <Direct {...props} />}
+      headerMode="none">
+      <Drawer.Screen name="Home" component={Home} />
+    </Drawer.Navigator>
+  );
+};
+
+export default Main;

@@ -1,11 +1,17 @@
 import React from 'react';
-import {View, Image, TouchableOpacity, Dimensions, Easing} from 'react-native';
+import {
+  View,
+  Image,
+  TouchableOpacity,
+  Dimensions,
+  ScrollView,
+  Easing,
+} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {createDrawerNavigator} from '@react-navigation/drawer';
 import Home from './Home';
 import Icon from 'react-native-vector-icons/Ionicons';
 import styled from 'styled-components';
-import Direct from './Direct';
+import Search from './Search';
 
 const {height, width} = Dimensions.get('window');
 
@@ -116,7 +122,7 @@ const Tabs = () => {
       initialRouteName="Home"
       tabBar={(props) => <MyTabBar {...props} />}>
       <Tab.Screen name="Home" component={Home} />
-      <Tab.Screen name="Search" component={Home} />
+      <Tab.Screen name="Search" component={Search} />
       <Tab.Screen name="Play" component={Home} />
       <Tab.Screen name="Fav" component={Home} />
       <Tab.Screen name="Profile" component={Home} />
@@ -133,20 +139,26 @@ const closeConfig = {
 };
 
 const Index = () => {
-  const Drawer = createDrawerNavigator();
+  // const Drawer = createDrawerNavigator();
 
   return (
-    <Drawer.Navigator
-      drawerPosition='right'
-      drawerStyle={{width}}
-      drawerType='slide'
-      overlayColor='transparent'
-      drawerContent={(props)=><Direct {...props} />}
-      headerMode="none">
-      <Drawer.Screen name="Home" component={Tabs} />
-      <Drawer.Screen name="Direct" component={Direct} />
-    </Drawer.Navigator>
+    <>
+      <Tabs />
+    </>
   );
+
+  // return (
+  //   <Drawer.Navigator
+  //     drawerPosition='right'
+  //     drawerStyle={{width}}
+  //     drawerType='slide'
+  //     overlayColor='transparent'
+  //     drawerContent={(props)=><Direct {...props} />}
+  //     headerMode="none">
+  //     <Drawer.Screen name="Home" component={Tabs} />
+  //     <Drawer.Screen name="Direct" component={Direct} />
+  //   </Drawer.Navigator>
+  // );
 };
 
 export default Index;
