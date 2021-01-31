@@ -10,6 +10,8 @@ const reducer = (state, action) => {
       return {...state, posts: action.payload};
     case 'set-categories':
       return {...state, categories: action.payload};
+    case 'set-media':
+      return {...state, media: action.payload};
     default:
       return state;
   }
@@ -39,6 +41,16 @@ const fetchPosts = (dispatch) => async () => {
   }
 };
 
+const fetchMedia = (dispatch) => async () => {
+  try {
+    const {data} = await Api('media');
+    dispatch({
+      type: 'set-media',
+      payload: data,
+    });
+  } catch (e) {}
+};
+
 const fetchCategories = (dispatch) => async () => {
   try {
     const {data} = await Api('categories');
@@ -55,10 +67,12 @@ export const {Context, Provider} = createDataContext(
     fetchStatusList,
     fetchCategories,
     fetchPosts,
+    fetchMedia,
   },
   {
     statusList: null,
     posts: null,
     categories: null,
+    media: null,
   },
 );

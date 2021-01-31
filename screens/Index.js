@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   Image,
@@ -12,6 +12,8 @@ import Home from './Home';
 import Icon from 'react-native-vector-icons/Ionicons';
 import styled from 'styled-components';
 import Search from './Search';
+import Video from './Video';
+import {useNavigationState} from '@react-navigation/native';
 
 const {height, width} = Dimensions.get('window');
 
@@ -27,11 +29,15 @@ const Fav = styled.TouchableOpacity`
 `;
 
 function MyTabBar({state, descriptors, navigation}) {
+  const [video, SetIsVideo] = useState(false);
+  const routes = useNavigationState((state) => state.routes);
+  const videoRoute = routes && routes[routes.length-1].state && routes[routes.length - 1].state.index == 2;
+
   return (
     <View
       style={{
         flexDirection: 'row',
-        backgroundColor: '#fff',
+        backgroundColor: video || videoRoute  ? '#1a1a1a' : '#fff',
         height: height * 0.07,
         alignItems: 'center',
       }}>
@@ -54,6 +60,12 @@ function MyTabBar({state, descriptors, navigation}) {
 
           if (!isFocused && !event.defaultPrevented) {
             navigation.navigate(route.name);
+          }
+
+          if (route.name == 'Play') {
+            SetIsVideo(true);
+          } else {
+            SetIsVideo(false);
           }
         };
 
@@ -94,14 +106,32 @@ function MyTabBar({state, descriptors, navigation}) {
             onLongPress={onLongPress}
             style={{flex: 1, alignItems: 'center'}}>
             {index < 4 ? (
-              <Icon name={icon} size={24} color={isFocused ? '#000' : '#000'} />
+              <Icon
+                name={icon}
+                size={24}
+                color={
+                  isFocused
+                    ? video || videoRoute
+                      ? '#fff'
+                      : '#000'
+                    : video || videoRoute
+                    ? '#fff'
+                    : '#000'
+                }
+              />
             ) : (
               <Image
                 style={{
                   height: 24,
                   width: 24,
                   borderRadius: 12,
-                  borderColor: isFocused ? '#000' : '#fff',
+                  borderColor: isFocused
+                    ? video || videoRoute
+                      ? '#fff'
+                      : '#000'
+                    : video || videoRoute
+                    ? '#000'
+                    : '#fff',
                   borderWidth: isFocused ? 2 : 0,
                 }}
                 source={require('../assets/images/profile.png')}
@@ -123,7 +153,7 @@ const Tabs = () => {
       tabBar={(props) => <MyTabBar {...props} />}>
       <Tab.Screen name="Home" component={Home} />
       <Tab.Screen name="Search" component={Search} />
-      <Tab.Screen name="Play" component={Home} />
+      <Tab.Screen name="Play" component={Video} />
       <Tab.Screen name="Fav" component={Home} />
       <Tab.Screen name="Profile" component={Home} />
     </Tab.Navigator>

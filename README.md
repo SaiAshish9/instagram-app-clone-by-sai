@@ -147,3 +147,11 @@ module.exports = {
 ubuntu software -> emoji picker
 ibus emoji
 ```
+
+## Custom Status Bar
+
+```
+npm i react-native-safe-area-view
+SafeAreaProvider
+SafeArea
+```

@@ -5,6 +5,7 @@ import AuthScreen from './screens/AuthScreen';
 import {createStackNavigator, TransitionPresets} from '@react-navigation/stack';
 import Index from './screens/Index';
 import {Provider} from './api/contexts';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
 
 const closeConfig = {
   animation: 'timing',
@@ -18,23 +19,25 @@ const App = () => {
   const Stack = createStackNavigator();
 
   return (
-    <NavigationContainer ref={(navigator) => {}}>
-      <Stack.Navigator
-        screenOptions={{
-          transitionSpec: {
-            open: closeConfig,
-            close: closeConfig,
-          },
-          gestureEnabled: true,
-          gestureDirection: 'horizontal',
-          ...TransitionPresets.SlideFromRightIOS,
-        }}
-        initialRouteName="auth"
-        headerMode="none">
-        <Stack.Screen name="auth" component={AuthScreen} />
-        <Stack.Screen name="home" component={Index} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <SafeAreaProvider>
+      <NavigationContainer ref={(navigator) => {}}>
+        <Stack.Navigator
+          screenOptions={{
+            transitionSpec: {
+              open: closeConfig,
+              close: closeConfig,
+            },
+            gestureEnabled: true,
+            gestureDirection: 'horizontal',
+            ...TransitionPresets.SlideFromRightIOS,
+          }}
+          initialRouteName="auth"
+          headerMode="none">
+          <Stack.Screen name="auth" component={AuthScreen} />
+          <Stack.Screen name="home" component={Index} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </SafeAreaProvider>
   );
 };
 
