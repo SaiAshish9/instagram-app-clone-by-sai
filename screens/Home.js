@@ -6,11 +6,15 @@ import PostCard from '../components/postCard';
 import {Context} from '../api/contexts';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import Direct from './Direct';
+import Suggestions from '../components/suggestions';
+import Stories from '../components/Stories';
 
 const {height, width} = Dimensions.get('window');
 
 const Home = ({navigation}) => {
   const [show, setShow] = useState(false);
+  const [selected, setSelected] = useState([]);
+
   const {
     state: {posts},
     fetchPosts,
@@ -40,8 +44,27 @@ const Home = ({navigation}) => {
           style={{
             width: width,
           }}>
-          <Scroll navigation={navigation} />
-          {posts && posts.map((i, k) => <PostCard data={i} key={k} idx={k} />)}
+          <Scroll
+            selected={selected}
+            setSelected={setSelected}
+            navigation={navigation}
+          />
+          {posts &&
+            posts.map((i, k) => k < 1 && <PostCard data={i} key={k} idx={k} />)}
+          {posts && <Suggestions />}
+          {posts &&
+            posts.map(
+              (i, k) => k > 0 && k < 3 && <PostCard data={i} key={k} idx={k} />,
+            )}
+          {posts && (
+            <Stories
+              selected={selected}
+              setSelected={setSelected}
+              navigation={navigation}
+            />
+          )}
+          {posts &&
+            posts.map((i, k) => k > 2 && <PostCard data={i} key={k} idx={k} />)}
           <View style={{height: height * 0.15, width}} />
         </View>
       </ScrollView>

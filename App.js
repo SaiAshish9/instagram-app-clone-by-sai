@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {Easing} from 'react-native';
 import AuthScreen from './screens/AuthScreen';
@@ -6,6 +6,8 @@ import {createStackNavigator, TransitionPresets} from '@react-navigation/stack';
 import Index from './screens/Index';
 import {Provider} from './api/contexts';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
+import {setNavigator} from './api/navigationRef';
+import {Context} from './api/contexts';
 
 const closeConfig = {
   animation: 'timing',
@@ -17,10 +19,28 @@ const closeConfig = {
 
 const App = () => {
   const Stack = createStackNavigator();
+  const {checkUser} = useContext(Context);
+  const [loading, IsLoading] = useState(true);
+  let nav;
+
+  const check = async () => {
+    setTimeout(() => {
+      checkUser(nav);
+      IsLoading(false);
+    }, 200);
+  };
+
+  useEffect(() => {
+    check();
+  }, []);
 
   return (
     <SafeAreaProvider>
-      <NavigationContainer ref={(navigator) => {}}>
+      <NavigationContainer
+        ref={(navigator) => {
+          setNavigator(navigator);
+          nav = navigator;
+        }}>
         <Stack.Navigator
           screenOptions={{
             transitionSpec: {
@@ -31,7 +51,6 @@ const App = () => {
             gestureDirection: 'horizontal',
             ...TransitionPresets.SlideFromRightIOS,
           }}
-          initialRouteName="auth"
           headerMode="none">
           <Stack.Screen name="auth" component={AuthScreen} />
           <Stack.Screen name="home" component={Index} />

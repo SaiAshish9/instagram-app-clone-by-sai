@@ -50,7 +50,14 @@ const Media = ({navigation}) => {
 
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: '#000'}}>
-      <FocusAwareStatusBar backgroundColor="#000" barStyle="light-content" />
+      <FocusAwareStatusBar
+        backgroundColor="#000"
+        barStyle="light-content"
+        showHideTransition='slide'
+
+      />
+              {/* hidden={true} */}
+
       <View
         style={{
           height,
@@ -96,7 +103,7 @@ const Media = ({navigation}) => {
           }}
           source={{
             uri:
-              'https://instagram.fdel36-1.fna.fbcdn.net/v/t50.2886-16/10000000_440314793671730_2596481608621930322_n.mp4?_nc_ht=instagram.fdel36-1.fna.fbcdn.net&_nc_cat=102&_nc_ohc=-qhnMQXfV-4AX8tj_Tm&oe=60194FA4&oh=706d548ffa14d4590591683723714cd2',
+              'https://instagram.fdel36-1.fna.fbcdn.net/v/t50.2886-16/10000000_440314793671730_2596481608621930322_n.mp4?_nc_ht=instagram.fdel36-1.fna.fbcdn.net&_nc_cat=102&_nc_ohc=uc5Cm7sJMbwAX9YsO3N&oe=601C9B64&oh=bfe55ff580471cb55b15daa970051c6c',
           }}
         />
 

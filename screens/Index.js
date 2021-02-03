@@ -18,6 +18,9 @@ import {StackActions, useNavigationState} from '@react-navigation/native';
 import Status from './Status';
 import Activity from './Activity';
 import Profile from './Profile';
+import {createDrawerNavigator} from '@react-navigation/drawer';
+import SideNav from '../components/SideNav';
+import Settings from './Settings';
 
 const {height, width} = Dimensions.get('window');
 
@@ -154,6 +157,22 @@ function MyTabBar({state, descriptors, navigation}) {
   );
 }
 
+const ProfileS = () => {
+  const Drawer = createDrawerNavigator();
+
+  return (
+    <Drawer.Navigator
+      drawerPosition="right"
+      drawerStyle={{height, zIndex: 3000000, width: width * 0.6}}
+      drawerType="slide"
+      overlayColor="transparent"
+      drawerContent={(props) => <SideNav {...props} />}
+      headerMode="none">
+      <Drawer.Screen name="Home" component={Profile} />
+    </Drawer.Navigator>
+  );
+};
+
 const Tabs = () => {
   const Tab = createBottomTabNavigator();
 
@@ -165,7 +184,7 @@ const Tabs = () => {
       <Tab.Screen name="Search" component={Search} />
       <Tab.Screen name="Play" component={Video} />
       <Tab.Screen name="Fav" component={Activity} />
-      <Tab.Screen name="Profile" component={Profile} />
+      <Tab.Screen name="Profile" component={ProfileS} />
     </Tab.Navigator>
   );
 };
@@ -183,6 +202,7 @@ const HomeS = () => {
       }}>
       <Stack.Screen name="Home" component={Tabs} />
       <Stack.Screen name="Status" component={Status} />
+      <Stack.Screen name="Settings" component={Settings} />
     </Stack.Navigator>
   );
 };

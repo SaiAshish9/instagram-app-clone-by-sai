@@ -14,8 +14,7 @@ import Icon from 'react-native-vector-icons/AntDesign';
 
 const {height, width} = Dimensions.get('window');
 
-const Scroll = ({navigation}) => {
-  const [selected, setSelected] = useState([]);
+const Scroll = ({navigation, selected, setSelected}) => {
   const {
     state: {statusList},
     fetchStatusList,
@@ -76,11 +75,17 @@ const Scroll = ({navigation}) => {
               !selected.map((x) => x.name).includes(i.name) && (
                 <ActiveStatus
                   key={k}
+                  setSelected={() => {
+                    setSelected([...selected, i]);
+                  }}
+                  selected={selected}
                   data={i}
                   onPress={() => {
                     setSelected([...selected, i]);
                     navigation.navigate('Status', {
-                      data:i,
+                      data: i,
+                      statusList: statusList,
+                      current: k,
                     });
                   }}
                 />
@@ -92,7 +97,7 @@ const Scroll = ({navigation}) => {
             <InActiveStatus
               onPress={() => {
                 navigation.navigate('Status', {
-                  data:i,
+                  data: i,
                 });
               }}
               data={i}

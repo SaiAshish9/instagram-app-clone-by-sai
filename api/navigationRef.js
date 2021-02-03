@@ -7,15 +7,15 @@ export const setNavigator = (nav) => {
 };
 
 export const navigate = ({name, params}) => {
-  navigation.dispatch(
-    CommonActions.reset({
-      routes: [
-        {
-          name,
-          params,
-        },
-      ],
-    }),
-  );
+    navigation.dispatch(
+      CommonActions.reset({
+        routes: [
+          {
+            name,
+            params,
+          },
+        ],
+      }),
+    );
 };
 // CommonActions.navigat

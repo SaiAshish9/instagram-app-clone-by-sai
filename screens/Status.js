@@ -9,6 +9,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 // https://instagram.fdel36-1.fna.fbcdn.net/v/t50.2886-16/142390566_1012025595986594_5782131199456884120_n.mp4?_nc_ht=instagram.fdel36-1.fna.fbcdn.net&_nc_cat=102&_nc_ohc=nhLdDuGIaYcAX_pCSGg&oe=601AB213&oh=d9158dfa3f999c156e635181ce72c10a
+// https://instagram.fdel36-1.fna.fbcdn.net/v/t51.2885-15/e35/69275203_2527337480858917_6521899749897001571_n.jpg?_nc_ht=instagram.fdel36-1.fna.fbcdn.net&_nc_cat=101&_nc_ohc=9y4KxO6tvhgAX8C69QV&tp=1&oh=7929d8f64a672fb62686e9b6e7b7479d&oe=6042D3CD
 
 const {width, height} = Dimensions.get('window');
 
@@ -19,7 +20,7 @@ const Row = styled.View`
   flex-direction: row;
 `;
 
-const Status = ({route, navigation}) => {
+const Status = ({route, navigation, selected, setSelected}) => {
   const video = useRef();
   const [pause, setPause] = useState(false);
   const [totalLength, setTotalLength] = useState(0);
@@ -40,11 +41,22 @@ const Status = ({route, navigation}) => {
     return blur, focus;
   }, [navigation]);
 
+  var colors = ['#f09433', '#e6683c', '#dc2743', '#cc2366', '#bc1888'];
+
+  if (route.params.data.colors) {
+    colors = route.params.data.colors.split(',');
+  }
+
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: '#000'}}>
-      <FocusAwareStatusBar backgroundColor="#000" barStyle="light-content" />
+      <FocusAwareStatusBar
+        backgroundColor="#000"
+        style={{color: '#000'}}
+        showHideTransition="slide"
+        barStyle="light-content"
+      />
       <LinearGradient
-        colors={['#f09433', '#e6683c', '#dc2743', '#cc2366', '#bc1888']}
+        colors={colors}
         style={{
           height,
           width,
@@ -103,9 +115,9 @@ const Status = ({route, navigation}) => {
                 style={{
                   color: '#fae6fe',
                   fontSize: 12,
-                  marginLeft:7,
+                  marginLeft: 7,
                 }}>
-                5h
+                {route.params.data['time']}
               </Text>
             </View>
 
@@ -126,7 +138,16 @@ const Status = ({route, navigation}) => {
             paused={pause}
             playInBackground={false}
             onEnd={() => {
-              navigation.goBack();
+              if (route.params.statusList[route.params.current + 1]) {
+                setSelected()
+                navigation.navigate('Status', {
+                  data: route.params.statusList[route.params.current + 1],
+                  statusList: route.params.statusList,
+                  current: route.params.current + 1,
+                });
+              } else {
+                navigation.goBack();
+              }
             }}
             onProgress={(data) => {
               setDuration(Math.floor(data.currentTime));
@@ -141,13 +162,12 @@ const Status = ({route, navigation}) => {
               borderRadius: 7,
             }}
             source={{
-              uri:
-                'https://instagram.fdel36-1.fna.fbcdn.net/v/t50.2886-16/80859720_189443308774635_20476835760227540_n.mp4?efg=eyJ2ZW5jb2RlX3RhZyI6InZ0c192b2RfdXJsZ2VuLjcyMC5mZWVkLmRlZmF1bHQiLCJxZV9ncm91cHMiOiJbXCJpZ193ZWJfZGVsaXZlcnlfdnRzX290ZlwiXSJ9&_nc_ht=instagram.fdel36-1.fna.fbcdn.net&_nc_cat=103&_nc_ohc=CzOOLgJAubgAX9BzmNo&vs=17854786957709109_2294021830&_nc_vs=HBksFQAYJEdFalMwUVRyNUI4MVRLd0FBTlRFbk5tU3YwZ0Fia1lMQUFBRhUAAsgBABUAGCRHQ1Y1MGdRRjJJSHVGTDRBQUpZZUJJM3JtYlpiYmtZTEFBQUYVAgLIAQAoABgAGwGIB3VzZV9vaWwBMBUAACbqydyIsbW3PxUCKAJDMywXQCuZmZmZmZoYEmRhc2hfYmFzZWxpbmVfMV92MREAdeoHAA%3D%3D&_nc_rid=cc3a09aba1&oe=601AD3E7&oh=1827e28458557382027960d786a95907',
+              uri: route.params.data['status-video'],
             }}
           />
         </View>
 
-        <Text style={{fontSize: 24}}>😘</Text>
+        <Text style={{fontSize: 24}}>{route.params.data['status-msg']}</Text>
 
         <View
           style={{
