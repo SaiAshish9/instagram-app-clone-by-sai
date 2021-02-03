@@ -14,7 +14,7 @@ import Icon from 'react-native-vector-icons/AntDesign';
 
 const {height, width} = Dimensions.get('window');
 
-const Scroll = () => {
+const Scroll = ({navigation}) => {
   const [selected, setSelected] = useState([]);
   const {
     state: {statusList},
@@ -30,10 +30,7 @@ const Scroll = () => {
       style={{
         marginVertical: height * 0.01,
       }}>
-      <ScrollView
-        showsHorizontalScrollIndicator={false}
-        horizontal
-       >
+      <ScrollView showsHorizontalScrollIndicator={false} horizontal>
         <TouchableOpacity>
           <View style={{justifyContent: 'center', marginLeft: width * 0.04}}>
             <Image
@@ -82,13 +79,26 @@ const Scroll = () => {
                   data={i}
                   onPress={() => {
                     setSelected([...selected, i]);
+                    navigation.navigate('Status', {
+                      data:i,
+                    });
                   }}
                 />
               ),
           )}
 
         {statusList &&
-          selected.map((i, k) => <InActiveStatus data={i} key={k} />)}
+          selected.map((i, k) => (
+            <InActiveStatus
+              onPress={() => {
+                navigation.navigate('Status', {
+                  data:i,
+                });
+              }}
+              data={i}
+              key={k}
+            />
+          ))}
       </ScrollView>
     </View>
   );

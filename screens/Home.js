@@ -9,7 +9,7 @@ import Direct from './Direct';
 
 const {height, width} = Dimensions.get('window');
 
-const Home = () => {
+const Home = ({navigation}) => {
   const [show, setShow] = useState(false);
   const {
     state: {posts},
@@ -40,7 +40,7 @@ const Home = () => {
           style={{
             width: width,
           }}>
-          <Scroll />
+          <Scroll navigation={navigation} />
           {posts && posts.map((i, k) => <PostCard data={i} key={k} idx={k} />)}
           <View style={{height: height * 0.15, width}} />
         </View>

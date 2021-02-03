@@ -8,12 +8,16 @@ import {
   Easing,
 } from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {createStackNavigator, TransitionPresets} from '@react-navigation/stack';
 import Home from './Home';
 import Icon from 'react-native-vector-icons/Ionicons';
 import styled from 'styled-components';
 import Search from './Search';
 import Video from './Video';
-import {useNavigationState} from '@react-navigation/native';
+import {StackActions, useNavigationState} from '@react-navigation/native';
+import Status from './Status';
+import Activity from './Activity';
+import Profile from './Profile';
 
 const {height, width} = Dimensions.get('window');
 
@@ -31,13 +35,19 @@ const Fav = styled.TouchableOpacity`
 function MyTabBar({state, descriptors, navigation}) {
   const [video, SetIsVideo] = useState(false);
   const routes = useNavigationState((state) => state.routes);
-  const videoRoute = routes && routes[routes.length-1].state && routes[routes.length - 1].state.index == 2;
-
+  const videoRoute =
+    routes &&
+    routes[routes.length - 1].state &&
+    routes[routes.length - 1].state.index == 2;
+  const focusedOptions = descriptors[state.routes[state.index].key].options;
+  if (focusedOptions.tabBarVisible === false) {
+    return null;
+  }
   return (
     <View
       style={{
         flexDirection: 'row',
-        backgroundColor: video || videoRoute  ? '#1a1a1a' : '#fff',
+        backgroundColor: video || videoRoute ? '#1a1a1a' : '#fff',
         height: height * 0.07,
         alignItems: 'center',
       }}>
@@ -154,9 +164,26 @@ const Tabs = () => {
       <Tab.Screen name="Home" component={Home} />
       <Tab.Screen name="Search" component={Search} />
       <Tab.Screen name="Play" component={Video} />
-      <Tab.Screen name="Fav" component={Home} />
-      <Tab.Screen name="Profile" component={Home} />
+      <Tab.Screen name="Fav" component={Activity} />
+      <Tab.Screen name="Profile" component={Profile} />
     </Tab.Navigator>
+  );
+};
+
+const HomeS = () => {
+  const Stack = createStackNavigator();
+
+  return (
+    <Stack.Navigator
+      headerMode="none"
+      screenOptions={{
+        gestureEnabled: true,
+        gestureDirection: 'horizontal',
+        ...TransitionPresets.SlideFromRightIOS,
+      }}>
+      <Stack.Screen name="Home" component={Tabs} />
+      <Stack.Screen name="Status" component={Status} />
+    </Stack.Navigator>
   );
 };
 
@@ -173,7 +200,7 @@ const Index = () => {
 
   return (
     <>
-      <Tabs />
+      <HomeS />
     </>
   );
 

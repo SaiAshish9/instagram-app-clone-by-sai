@@ -1,5 +1,3 @@
-// https://instagram.fdel36-1.fna.fbcdn.net/v/t50.2886-16/10000000_440314793671730_2596481608621930322_n.mp4?_nc_ht=instagram.fdel36-1.fna.fbcdn.net&_nc_cat=102&_nc_ohc=-qhnMQXfV-4AX8tj_Tm&oe=60194FA4&oh=706d548ffa14d4590591683723714cd2
-
 import React, {useRef, useEffect, useState} from 'react';
 import {
   View,
@@ -72,19 +70,19 @@ const Media = ({navigation}) => {
           style={{
             color: '#fff',
             fontSize: 27,
-            textAlign:'center',
-            fontFamily:'GrandHotel-Regular'
+            textAlign: 'center',
+            fontFamily: 'GrandHotel-Regular',
           }}>
           127-run second-wicket partnership
         </Text>
-
+        {/*  */}
         <Video
           controls={false}
           ref={video}
+          volume={0}
           paused={pause}
           playInBackground={false}
           repeat
-          volume={0}
           onProgress={(data) => {
             setDuration(Math.floor(data.currentTime));
           }}
@@ -164,18 +162,18 @@ const Media = ({navigation}) => {
                     totalLength,
                   });
                 }}>
-                <AIcon color="#999" name="heart" size={24} />
+                <AIcon color="#999" name="heart" size={21} />
               </TouchableOpacity>
               <TouchableOpacity>
                 <Icon
                   style={{marginHorizontal: 10}}
                   name="chatbubble"
                   color="#999"
-                  size={24}
+                  size={21}
                 />
               </TouchableOpacity>
               <TouchableOpacity>
-                <FAIcon color="#999" name="send" size={24} />
+                <FAIcon color="#999" name="send" size={21} />
               </TouchableOpacity>
               <TouchableOpacity style={{marginHorizontal: 10}}>
                 <Icon color="#999" name="ellipsis-vertical" size={24} />
