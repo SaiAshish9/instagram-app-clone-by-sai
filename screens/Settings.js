@@ -135,7 +135,7 @@ const Settings = ({navigation}) => {
             including story and post sharing and logging in.
           </Text>
         </View>
-        <Text style={{fontWeight: 'bold', marginBottom: height * 0.02}}>
+        <Text style={{fontWeight: 'bold', marginVertical: height * 0.02}}>
           Logins
         </Text>
         <Text

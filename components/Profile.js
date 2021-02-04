@@ -45,14 +45,14 @@ const data = [
   {
     title: 'Add Profile Photo',
     desc1: 'Choose a profile photo to',
-    desc2: "represent yourself on Instagram.",
+    desc2: 'represent yourself on Instagram.',
     btnText: 'Change Photo',
     icon: <FIcon name="users" color="#000" size={27} />,
   },
   {
     title: 'Find People to Follow',
     desc1: 'Follow people and interests you',
-    desc2: "care about.",
+    desc2: 'care about.',
     btnText: 'Find More',
     icon: <EIcon name="user" color="#000" size={32} />,
   },
@@ -68,6 +68,8 @@ const Profile = () => {
         marginVertical: height * 0.02,
       }}>
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+        <View style={{width: width * 0.04}} />
+
         <View
           style={{
             borderColor: '#b7b7b7',
@@ -127,16 +129,17 @@ const Profile = () => {
                 borderWidth: 1,
                 marginVertical: height * 0.02,
                 marginBottom: height * 0.015,
-                zIndex:1
+                zIndex: 1,
               }}>
               {i.icon}
+              <Icon
+                name="checkcircle"
+                size={21}
+                color="#5bc323"
+                style={{position: 'absolute', top: 34, zIndex: 3, right: -9}}
+              />
             </View>
-            <Icon
-              name="checkcircle"
-              size={21}
-              color="#5bc323"
-              style={{position: 'absolute', top: 62, zIndex: 3, right: 46.5}}
-            />
+
             <Text style={{marginTop: 5, fontWeight: 'bold', color: '#444444'}}>
               {i.title}
             </Text>

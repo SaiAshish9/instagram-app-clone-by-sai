@@ -209,9 +209,10 @@ const Profile = ({navigation}) => {
                 COMPLETE
               </Text>
             </Row>
-            <Suggestions />
             
           </View>
+          <Suggestions />
+
         </View>
       </ScrollView>
     </>
